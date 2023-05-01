@@ -1,0 +1,13 @@
+{
+  "name": "new-calac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HWAHAEBANG/new-calac.git",
+  "author": "화해방 <bcl0206@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node web.js",
+    "dev": "nodemon web.js"
+  }
+}
