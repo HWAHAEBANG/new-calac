@@ -6,8 +6,12 @@
   "author": "화해방 <bcl0206@naver.com>",
   "license": "MIT",
   "scripts": {
+    "client-build": "cd client && yarn install --immutable && yarn build && cd ../",
+    "server-build": "cd server && yarn install --immutable --dev && yarn build && cd ../",
+    "heroku-prebuild": "yarn run client-build && mv ./client/build ./server/build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node web.js",
+    "start": "cd server && yarn run start",
     "dev": "nodemon web.js"
-  }
+  },
+  "devDependencies": {}
 }
