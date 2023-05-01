@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "client-build": "cd client && yarn install --immutable && yarn build && cd ../",
-    "server-build": "cd server && yarn install --immutable --dev && yarn build && cd ../",
-    "heroku-prebuild": "yarn run client-build && mv ./client/build ./server/build",
+    "server-build": "cd server && yarn install --immutable --dev && cd ../",
+    "heroku-prebuild": "yarn run client-build  && yarn run server-build &&  mv ./client/build ./server/build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd server && yarn start",
     "dev": "nodemon index.js"
