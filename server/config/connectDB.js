@@ -3,10 +3,10 @@ const mysql = require("mysql");
 const connectDB = {
   init: () => {
     return mysql.createConnection({
-      host: 'nodejs-006.cafe24.com',
-      user: 'hellossun',
-      password: 'dahae@0925',
-      database: 'hellossun',
+      host: "nodejs-006.cafe24.com",
+      user: "hellossun",
+      password: "dahae@0925",
+      database: "hellossun",
       // host: process.env.DB_HOST,
       // user: process.env.DB_USER,
       // password: process.env.DB_PASSWORD,
