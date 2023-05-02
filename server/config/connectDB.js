@@ -12,11 +12,11 @@ const connectDB = {
       // // password: process.env.DB_PASSWORD,
       // // database: process.env.DB_DATABASE,
       // multipleStatements: true,
-      host: "nodejs-006.cafe24.com",
-      user: "hellossun",
-      password: "dahae@0925",
+      host: "us-cdbr-east-06.cleardb.net",
+      user: "beb26cbad5827b",
+      password: "0ba2b98a",
       port: "3306",
-      database: "hellossun",
+      // database: "calac",
       multipleStatements: true,
     });
   },
@@ -41,3 +41,6 @@ const connectDB = {
 };
 
 module.exports = connectDB;
+
+//CLEARDB_DATABASE_URL
+//mysql://beb26cbad5827b:0ba2b98a@us-cdbr-east-06.cleardb.net/heroku_5f173ac1e1d2a1b?reconnect=true
