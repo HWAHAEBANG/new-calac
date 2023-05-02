@@ -62,7 +62,7 @@ const ChangeUserInfo = ({ hasSidCookie }) => {
   useEffect(() => {
     if (!hasSidCookie) return;
     axios
-      .get("http://calac.cafe24app.com/login/user-info", {
+      .get("https://calac.herokuapp.com/login/user-info", {
         // 브라우저에 저장되어있는 쿠키를 참조해서 권한 획득
         headers: {
           Authorization: `Bearer ${getCookie("sid")}`,
@@ -109,7 +109,7 @@ const ChangeUserInfo = ({ hasSidCookie }) => {
   const handleSubmitAuthInfo = () => {
     axios
       .post(
-        `http://calac.cafe24app.com/login`,
+        `https://calac.herokuapp.com/login`,
         {
           id: authInfo.id,
           pwd: authInfo.pwd,
@@ -135,7 +135,7 @@ const ChangeUserInfo = ({ hasSidCookie }) => {
   const handleSave = () => {
     axios
       .post(
-        `http://calac.cafe24app.com/login/changeUserInfo`,
+        `https://calac.herokuapp.com/login/changeUserInfo`,
         {
           id: sessionUserInfo.id,
           pwd: sessionUserInfo.pwd,
@@ -213,7 +213,7 @@ const ChangeUserInfo = ({ hasSidCookie }) => {
       emailDomains,
     } = sessionUserInfo;
     axios
-      .post("http://calac.cafe24app.com/login/insert", {
+      .post("https://calac.herokuapp.com/login/insert", {
         id,
         pwd,
         name,

@@ -11,15 +11,19 @@ const TopBar = ({ hasSidCookie, session }) => {
   const [totalCountData, setTotalCountData] = useState(false);
   //======================================================
   useEffect(() => {
-    axios.get("http://calac.cafe24app.com/financialledger/goal").then((res) => {
-      setMoney(res.data[0]["money_count"]);
-    });
+    axios
+      .get("https://calac.herokuapp.com/financialledger/goal")
+      .then((res) => {
+        setMoney(res.data[0]["money_count"]);
+      });
   }, []);
   // 리렌더링 조건
   //======================================================
   useEffect(() => {
     axios
-      .get(`http://calac.cafe24app.com/financialledger/monthly/total?type=expense`)
+      .get(
+        `https://calac.herokuapp.com/financialledger/monthly/total?type=expense`
+      )
       .then((res) => {
         res.data.length !== 0 && setTotalCountData(res.data[0]["sum_count"]);
       });

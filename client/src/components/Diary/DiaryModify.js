@@ -46,7 +46,7 @@ const DiaryModify = ({ isModify, setIsModify, diary_no, hasSidCookie }) => {
   const modify = (no) => {
     let postTitle = newContent.title.length === 0 ? getTitle : newContent.title;
     axios
-      .post("http://calac.cafe24app.com/diary/modify", {
+      .post("https://calac.herokuapp.com/diary/modify", {
         no: no,
         newTitle: postTitle,
         newContent: newContent.content,
@@ -59,7 +59,7 @@ const DiaryModify = ({ isModify, setIsModify, diary_no, hasSidCookie }) => {
   //======================================================
   useEffect(() => {
     axios
-      .post("http://calac.cafe24app.com/diary/onePost", { no: diary_no })
+      .post("https://calac.herokuapp.com/diary/onePost", { no: diary_no })
       .then((res) => {
         setGetTitle(res.data[0].title);
         setGetContent(res.data[0].content);

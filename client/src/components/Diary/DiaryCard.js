@@ -71,15 +71,17 @@ const DiaryCard = () => {
   };
   //======================================================
   useEffect(() => {
-    axios.get("http://calac.cafe24app.com/diary/comments/count").then((res) => {
-      setCommentCnt(res.data);
-    });
+    axios
+      .get("https://calac.herokuapp.com/diary/comments/count")
+      .then((res) => {
+        setCommentCnt(res.data);
+      });
   }, [commentCnt]);
   //======================================================
   let offset = 0;
   const loadDiary = () => {
     axios
-      .post(`http://calac.cafe24app.com/diary?limit=10&offset=${offset}`)
+      .post(`https://calac.herokuapp.com/diary?limit=10&offset=${offset}`)
       .then((res) => {
         setPosts((oldPosts) => [...oldPosts, ...res.data]);
       });
@@ -111,7 +113,7 @@ const DiaryCard = () => {
     } else {
       if (window.confirm(`정말 삭제하시겠습니까?`) === true) {
         axios
-          .post("http://calac.cafe24app.com/diary/delete", {
+          .post("https://calac.herokuapp.com/diary/delete", {
             id: id,
           })
           .then(() => alert("삭제되었습니다 :)"));
@@ -205,7 +207,7 @@ const DiaryCard = () => {
                       component='img'
                       width='40vh'
                       height='194'
-                      src={`http://calac.cafe24app.com/images/diary/${list.image}`}
+                      src={`https://calac.herokuapp.com/images/diary/${list.image}`}
                       alt='이미지'
                     />
                   ) : (

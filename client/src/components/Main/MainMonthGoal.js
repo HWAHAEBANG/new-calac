@@ -19,7 +19,7 @@ const MainMonthGoal = () => {
   };
   //======================================================
   useEffect(() => {
-    axios.get("http://calac.cafe24app.com/dashboard/goal").then((res) => {
+    axios.get("https://calac.herokuapp.com/dashboard/goal").then((res) => {
       setGoalList(res.data);
     });
   }, []);

@@ -8,7 +8,7 @@ const LedgerDonut = () => {
   const [monthlyDonutData, setMonthlyDountData] = useState([]);
   //======================================================
   useEffect(() => {
-    axios.get("http://calac.cafe24app.com/financialledger").then((res) => {
+    axios.get("https://calac.herokuapp.com/financialledger").then((res) => {
       setMonthlyDountData(res.data);
     });
   }, [monthlyDonutData]);

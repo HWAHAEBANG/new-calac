@@ -18,7 +18,7 @@ const path = require("path");
 // app.use(cors());
 app.use(
   cors({
-    origin: "https://sunny-im.github.io/",
+    origin: "https://calac.herokuapp.com/",
     credentials: true,
   })
 );

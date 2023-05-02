@@ -49,7 +49,7 @@ const DemoApp = () => {
     if (!hasSidCookie || !session || !session.userInfo) return; // 세션 이슈 해결하면 session으로 해도 될듯
     axios
       .get(
-        `http://calac.cafe24app.com/scheduler/category?currentUserNo=${session.userInfo.no}`
+        `https://calac.herokuapp.com/scheduler/category?currentUserNo=${session.userInfo.no}`
       )
       .then((response) => {
         setCategoryList(response.data);
@@ -66,7 +66,7 @@ const DemoApp = () => {
     if (!hasSidCookie || !session || !session.userInfo) return;
     axios
       .get(
-        `http://calac.cafe24app.com/scheduler?currentUserNo=${session.userInfo.no}`,
+        `https://calac.herokuapp.com/scheduler?currentUserNo=${session.userInfo.no}`,
         { withCredentials: true }
       )
       .then((response) => {
@@ -143,7 +143,7 @@ const DemoApp = () => {
     // 새 이벤트 DB에 INSERT ======================================================
 
     axios
-      .post("http://calac.cafe24app.com/scheduler/insert", {
+      .post("https://calac.herokuapp.com/scheduler/insert", {
         // (주의) id값 전송안함. DB 저장시 바로 생성
         title,
         start,
@@ -238,13 +238,16 @@ const DemoApp = () => {
   // 이벤트의 날짜가 수정되었을 때, 저장 =========================================
   function handleEventChange(changeInfo) {
     axios // 새 이벤트 DB에 UPDATE
-      .put(`http://calac.cafe24app.com/scheduler/update/${changeInfo.event.id}`, {
-        title: changeInfo.event.title,
-        start: changeInfo.event.startStr,
-        end: changeInfo.event.endStr,
-        color: changeInfo.event.backgroundColor,
-        locale: changeInfo.event.extendedProps.locale,
-      })
+      .put(
+        `https://calac.herokuapp.com/scheduler/update/${changeInfo.event.id}`,
+        {
+          title: changeInfo.event.title,
+          start: changeInfo.event.startStr,
+          end: changeInfo.event.endStr,
+          color: changeInfo.event.backgroundColor,
+          locale: changeInfo.event.extendedProps.locale,
+        }
+      )
       .then((response) => {
         // 성공시 UI에도 바로 반영
         changeInfo.event.setDates(response.data.startStr, response.data.endStr); // 뭐지이건?
@@ -308,7 +311,7 @@ const DemoApp = () => {
       return;
     }
     axios // 새 이벤트 DB에 UPDATE
-      .put(`http://calac.cafe24app.com/scheduler/update/${updatedEvent.id}`, {
+      .put(`https://calac.herokuapp.com/scheduler/update/${updatedEvent.id}`, {
         title: title,
         start: start,
         end: end,
@@ -368,7 +371,9 @@ const DemoApp = () => {
       window.confirm(`'${updatedEvent.title}'일정을 완전히 삭제하시겠습니까?`)
     ) {
       axios // 새 이벤트 DB에 DELETE
-        .delete(`http://calac.cafe24app.com/scheduler/delete/${updatedEvent.id}`)
+        .delete(
+          `https://calac.herokuapp.com/scheduler/delete/${updatedEvent.id}`
+        )
         .then(() => {
           // 성공시 UI에도 바로 반영
           // Remove event from calendar
@@ -412,7 +417,7 @@ const DemoApp = () => {
     }
 
     axios // DB에 INSERT
-      .post("http://calac.cafe24app.com/scheduler/category/insert", {
+      .post("https://calac.herokuapp.com/scheduler/category/insert", {
         value: pickedAddColor,
         label: categoryText,
         user_no: session.userInfo.no,
@@ -447,7 +452,9 @@ const DemoApp = () => {
       )
     ) {
       axios // DB에서 카테고리 DELETE
-        .delete(`http://calac.cafe24app.com/scheduler/category/delete/${option.id}`)
+        .delete(
+          `https://calac.herokuapp.com/scheduler/category/delete/${option.id}`
+        )
         .then(() => {
           // Remove event from calendar
           const test = categoryList.filter(
@@ -463,7 +470,7 @@ const DemoApp = () => {
           handleCloseDetail();
         });
 
-      const url = `http://calac.cafe24app.com/scheduler/event/color/delete/${encodeURIComponent(
+      const url = `https://calac.herokuapp.com/scheduler/event/color/delete/${encodeURIComponent(
         option.value
       )}`;
 
@@ -490,10 +497,13 @@ const DemoApp = () => {
   // 카테고리 색상변경 ==========================================================================
   const updateColor = (option) => {
     axios // DB에 카테고리 UPDATE
-      .put(`http://calac.cafe24app.com/scheduler/category/update/${option.id}`, {
-        value: pickedColor,
-        label: option.label,
-      })
+      .put(
+        `https://calac.herokuapp.com/scheduler/category/update/${option.id}`,
+        {
+          value: pickedColor,
+          label: option.label,
+        }
+      )
       .then((response) => {
         const test = categoryList.filter(
           (item) => item.id !== parseInt(option.id)
@@ -516,7 +526,7 @@ const DemoApp = () => {
         console.error(error);
       });
 
-    const url = `http://calac.cafe24app.com/scheduler/event/color/update/${encodeURIComponent(
+    const url = `https://calac.herokuapp.com/scheduler/event/color/update/${encodeURIComponent(
       option.value
     )}`;
     axios // DB에 해당 카테고리를 가진 이벤드들 모두 UPDATE

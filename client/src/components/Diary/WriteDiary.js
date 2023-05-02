@@ -36,7 +36,7 @@ const WriteDiary = () => {
   // 5. 세션 객체가 저장되는 변수임. 객체타입 {success: true userInfo: {no: 1 ...}} 을 반환함.
   const session = useSelector((state) => state.session);
   //=======================================================
-  const imgLink = "http://calac.cafe24app.com/images/diary";
+  const imgLink = "https://calac.herokuapp.com/images/diary";
   // ckeditor img upload ==================================
   const customUploadAdapter = (loader) => {
     return {
@@ -48,7 +48,7 @@ const WriteDiary = () => {
             data.append("file", file);
 
             axios
-              .post("http://calac.cafe24app.com/diary/upload", data)
+              .post("https://calac.herokuapp.com/diary/upload", data)
               .then((res) => {
                 if (!flag) {
                   setFlag(true);
@@ -100,7 +100,7 @@ const WriteDiary = () => {
       alert("제목 또는 내용을 입력해주세요 !");
     } else {
       axios
-        .post("http://calac.cafe24app.com/diary/insert", {
+        .post("https://calac.herokuapp.com/diary/insert", {
           user_no: session.userInfo.no,
           title: allContent.title,
           content: allContent.content,

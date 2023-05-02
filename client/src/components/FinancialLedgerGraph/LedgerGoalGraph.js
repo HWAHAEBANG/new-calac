@@ -26,25 +26,29 @@ const LedgerGoalGraph = () => {
   const [noData, setNoData] = useState(false);
   //======================================================
   useEffect(() => {
-    axios.get("http://calac.cafe24app.com/financialledger/goal").then((res) => {
-      if (res.data.length === 0) {
-        setNoData(true);
-        setMonthlyGoalData(0);
-        setMoney(0);
-      } else {
-        setMonthlyGoalData(res.data[0]);
-        setMoneyNo(res.data[0]["money_no"]);
-        setMoney(res.data[0]["money_count"]);
-        setCreated(res.data[0]["money_createdAt"]);
-        setUpdated(res.data[0]["money_updatedAt"]);
-      }
-    });
+    axios
+      .get("https://calac.herokuapp.com/financialledger/goal")
+      .then((res) => {
+        if (res.data.length === 0) {
+          setNoData(true);
+          setMonthlyGoalData(0);
+          setMoney(0);
+        } else {
+          setMonthlyGoalData(res.data[0]);
+          setMoneyNo(res.data[0]["money_no"]);
+          setMoney(res.data[0]["money_count"]);
+          setCreated(res.data[0]["money_createdAt"]);
+          setUpdated(res.data[0]["money_updatedAt"]);
+        }
+      });
   }, [money, open]);
   //======================================================
   const type = "expense";
   useEffect(() => {
     axios
-      .get(`http://calac.cafe24app.com/financialledger/monthly/total?type=${type}`)
+      .get(
+        `https://calac.herokuapp.com/financialledger/monthly/total?type=${type}`
+      )
       .then((res) => {
         res.data.length !== 0 && setTotalCountData(res.data[0]["sum_count"]);
       });
@@ -68,16 +72,19 @@ const LedgerGoalGraph = () => {
   // 모달창 저장버튼
   const handleSave = () => {
     setOpen(false);
-    axios.put(`http://calac.cafe24app.com/financialledger/goal/update/${moneyNo}`, {
-      count: changeGoalMoney,
-      no: moneyNo,
-    });
+    axios.put(
+      `https://calac.herokuapp.com/financialledger/goal/update/${moneyNo}`,
+      {
+        count: changeGoalMoney,
+        no: moneyNo,
+      }
+    );
   };
   const goalPercent = Math.round((totalCountData / money) * 100);
   //======================================================
   const handleSaveMoney = () => {
     setOpen(false);
-    axios.post("http://calac.cafe24app.com/financialledger/goal/insert", {
+    axios.post("https://calac.herokuapp.com/financialledger/goal/insert", {
       count: changeGoalMoney,
     });
   };
