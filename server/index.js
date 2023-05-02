@@ -35,31 +35,31 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname, "/build/index.html");
 });
 
-//==============================================
-const DASHBOARD = require("./router/main.js");
-app.use("/dashboard", DASHBOARD);
+// //==============================================
+// const DASHBOARD = require("./router/main.js");
+// app.use("/dashboard", DASHBOARD);
 
-const LEDGER = require("./router/financialledger.js");
-app.use("/financialledger", LEDGER);
+// const LEDGER = require("./router/financialledger.js");
+// app.use("/financialledger", LEDGER);
 
-const DIARY = require("./router/diary.js");
-app.use("/diary", DIARY);
+// const DIARY = require("./router/diary.js");
+// app.use("/diary", DIARY);
 
-// const COMMENTS = require("./router/comments.js");
-// app.use("/comments", COMMENTS);
+// // const COMMENTS = require("./router/comments.js");
+// // app.use("/comments", COMMENTS);
 
-const SCHEDULER = require("./router/scheduler.js");
-app.use("/scheduler", SCHEDULER);
+// const SCHEDULER = require("./router/scheduler.js");
+// app.use("/scheduler", SCHEDULER);
 
-const USERS = require("./router/login.js");
-app.use("/login", USERS);
+// const USERS = require("./router/login.js");
+// app.use("/login", USERS);
 
-// images 폴더 내의 파일들을 외부로 노출 시켜주기 위한 미들웨어
-app.use("/images", express.static(path.join(__dirname, "/images")));
-//==============================================
-app.listen(PORT, () => {
-  console.log(`running on port ${PORT}`);
-});
+// // images 폴더 내의 파일들을 외부로 노출 시켜주기 위한 미들웨어
+// app.use("/images", express.static(path.join(__dirname, "/images")));
+// //==============================================
+// app.listen(PORT, () => {
+//   console.log(`running on port ${PORT}`);
+// });
 // http.createServer(app).listen(PORT, () => {
 //   console.log(`HTTP : running on port ${PORT}`);
 // });

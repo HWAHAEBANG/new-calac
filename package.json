@@ -13,5 +13,6 @@
     "start": "cd server && yarn start",
     "dev": "nodemon index.js"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "dependencies": {}
 }
