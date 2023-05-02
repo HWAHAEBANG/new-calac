@@ -12,7 +12,7 @@ const connectDB = {
       // // password: process.env.DB_PASSWORD,
       // // database: process.env.DB_DATABASE,
       // multipleStatements: true,
-      host: "10.0.0.1",
+      host: "nodejs-006.cafe24.com",
       user: "hellossun",
       password: "dahae@0925",
       port: "3306",
