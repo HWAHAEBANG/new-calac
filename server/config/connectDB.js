@@ -2,8 +2,7 @@ require("dotenv").config();
 const mysql = require("mysql");
 const connectDB = {
   init: () => {
-    // return mysql.createConnection({
-    return mysql.createPool({
+    return mysql.createConnection({
       // host: "nodejs-006.cafe24.com",
       // user: "hellossun",
       // password: "dahae@0925",
