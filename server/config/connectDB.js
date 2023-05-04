@@ -3,23 +3,13 @@ const mysql = require("mysql");
 const connectDB = {
   init: () => {
     return mysql.createConnection({
-      // host: "nodejs-006.cafe24.com",
-      // user: "hellossun",
-      // password: "dahae@0925",
-      // database: "hellossun",
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       port: process.env.DB_PORT,
       database: process.env.DB_DATABASE,
-      // // database: process.env.DB_DATABASE,
       // multipleStatements: true,
       //===========================================
-      // host: "us-cdbr-east-06.cleardb.net",
-      // user: "beb26cbad5827b",
-      // password: "0ba2b98a",
-      // port: "3306",
-      // multipleStatements: true,
     });
   },
   open: (con) => {
