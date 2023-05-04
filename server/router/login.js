@@ -59,13 +59,12 @@ router.post("/", (req, res) => {
   const user_id = req.body.id;
   // const user_pwd = req.body.pwd;
   const sqlQuery = "SELECT * FROM users WHERE user_id = ?;";
-  if(!user_id) {
+  if (!user_id) {
     return res.status(400).json({
-      status : 'error',
-      error : 'req body cannot be empty'
+      status: "error",
+      error: "req body cannot be empty",
     });
   } else {
-
     db.query(sqlQuery, [user_id], (err, result) => {
       if (err) {
         console.log(err);
@@ -73,7 +72,7 @@ router.post("/", (req, res) => {
           .status(500)
           .json({ success: false, message: "Internal Server Error" });
       } else {
-        console.log("result",result)
+        console.log("result", result);
         if (!result[0]) {
           // 원하는 아이디를 찾지 못한 경우
           // (참고)(중요) : status가 200대가 아니면 무조건 catch로 가버린다.
@@ -99,16 +98,16 @@ router.post("/", (req, res) => {
               createdAt: result[0].user_createdAt,
               updatedAt: result[0].user_updatedAt,
             };
-  
+
             req.session.userInfo = userInfo; // 세션객체에 로그인 정보 저장
             res.cookie("sid", req.sessionID, {
               maxAge: 1000 * 60 * 60 * 24,
-              domain: "http://calac.cafe24app.com",
+              domain: "https://calac.herokuapp.com",
             }); // 세션 ID를 브라우저에 sid쿠키로 저장
-            console.log(res.cookie)
+            console.log(res.cookie);
             // res.send(userInfo); //필요 없을 듯.?
             res.status(200).json({ success: true, userInfo });
-            console.log("res : ",res.status)
+            console.log("res : ", res.status);
           } else {
             // res.send("Login failed");
             res.status(200).json({ success: false, message: "wrongPw" });
